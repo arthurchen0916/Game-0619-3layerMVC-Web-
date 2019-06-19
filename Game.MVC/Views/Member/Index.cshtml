@@ -1,0 +1,20 @@
+﻿@model IEnumerable<Game.Common.Entities.Member>
+
+@{
+    ViewBag.Title = "Member Page";
+}
+
+
+<table class="table">
+    @foreach (var member in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelMember => member.Account)
+            </td>
+            <td>
+                @Html.DisplayFor(modelMember => member.Password)
+            </td>
+        </tr>
+    }
+</table>
