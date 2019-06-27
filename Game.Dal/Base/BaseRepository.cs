@@ -40,7 +40,24 @@ namespace Game.Dal.Base
 
         public void Update(T item)
         {
-            _dbContext.Entry(item).State = EntityState.Modified;
+            var entry = _dbContext.Entry<T>(item);
+
+            if (entry.State == EntityState.Detached)
+            {
+                var set = _dbContext.Set<T>();
+
+                T attachedEntity = set.Find(item.Id);
+
+                if (attachedEntity != null)
+                {
+                    var attachedEntry = _dbContext.Entry(attachedEntity);
+                    attachedEntry.CurrentValues.SetValues(item);
+                }
+                else
+                {
+                    entry.State = EntityState.Modified;
+                }
+            }
             _dbContext.SaveChanges();
         }
 

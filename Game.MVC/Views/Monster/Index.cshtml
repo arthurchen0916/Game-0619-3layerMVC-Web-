@@ -4,11 +4,16 @@
     ViewBag.Title = "Monster Page";
 }
 
-
+<p>
+    @Html.ActionLink("Create New Monster", "Create")
+</p>
 <table class="table">
     @foreach (var monster in Model)
     {
     <tr>
+        <td>
+            @Html.DisplayFor(modelItem => monster.Id)
+        </td>
         <td>
             @Html.DisplayFor(modelItem => monster.Name)
         </td>
@@ -20,6 +25,11 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => monster.Exp)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id = monster.Id }) |
+            @Html.ActionLink("Detail", "Detail", new { id = monster.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id = monster.Id })
         </td>
     </tr>
     }

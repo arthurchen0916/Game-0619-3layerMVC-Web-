@@ -4,17 +4,27 @@
     ViewBag.Title = "Member Page";
 }
 
-
+<p>
+    @Html.ActionLink("Create New Member", "Create")
+</p>
 <table class="table">
     @foreach (var member in Model)
     {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelMember => member.Account)
-            </td>
-            <td>
-                @Html.DisplayFor(modelMember => member.Password)
-            </td>
-        </tr>
+    <tr>
+        <td>
+            @Html.DisplayFor(modelMember => member.Id)
+        </td>
+        <td>
+            @Html.DisplayFor(modelMember => member.Account)
+        </td>
+        <td>
+            @Html.DisplayFor(modelMember => member.Password)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id = member.Id }) |
+            @Html.ActionLink("Detail", "Detail", new { id = member.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id = member.Id })
+        </td>
+    </tr>
     }
 </table>

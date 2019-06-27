@@ -12,5 +12,6 @@ namespace Game.Common.Interfaces
         void Update(T item);
         IEnumerable<T> Find(Expression<Func<T, bool>> predicate);
         IEnumerable<T> FindAll();
+        
     }
 }
