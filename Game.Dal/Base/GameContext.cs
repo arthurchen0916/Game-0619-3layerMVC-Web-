@@ -6,7 +6,7 @@ namespace Game.Dal.Base
     public partial class GameContext : DbContext
     {
         public GameContext()
-            : base("name=GameEntities")
+            : base("name=GameContext")
         {
         }
 

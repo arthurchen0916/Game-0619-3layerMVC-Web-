@@ -2,6 +2,10 @@
 
 @{
     ViewBag.Title = "Monster Page";
+    if (Session["Account"] == null)
+    {
+        Response.Redirect("~/Login/Index");
+    }
 }
 
 <p>
@@ -10,27 +14,28 @@
 <table class="table">
     @foreach (var monster in Model)
     {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => monster.Id)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => monster.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => monster.HP)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => monster.ATK)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => monster.Exp)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id = monster.Id }) |
-            @Html.ActionLink("Detail", "Detail", new { id = monster.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id = monster.Id })
-        </td>
-    </tr>
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => monster.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => monster.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => monster.HP)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => monster.ATK)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => monster.Exp)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = monster.Id }) |
+                @Html.ActionLink("Detail", "Detail", new { id = monster.Id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = monster.Id })
+            </td>
+        </tr>
     }
 </table>
+@Html.ActionLink("返回至Dashboard主畫面", "Index", "Home")<br>

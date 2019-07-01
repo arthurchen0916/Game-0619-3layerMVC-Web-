@@ -2,6 +2,10 @@
 
 @{
     ViewBag.Title = "Member Page";
+    if (Session["Account"] == null)
+    {
+        Response.Redirect("~/Login/Index");
+    }
 }
 
 <p>
@@ -10,21 +14,22 @@
 <table class="table">
     @foreach (var member in Model)
     {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelMember => member.Id)
-        </td>
-        <td>
-            @Html.DisplayFor(modelMember => member.Account)
-        </td>
-        <td>
-            @Html.DisplayFor(modelMember => member.Password)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id = member.Id }) |
-            @Html.ActionLink("Detail", "Detail", new { id = member.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id = member.Id })
-        </td>
-    </tr>
+        <tr>
+            <td>
+                @Html.DisplayFor(modelMember => member.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelMember => member.Account)
+            </td>
+            <td>
+                @Html.DisplayFor(modelMember => member.Password)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = member.Id }) |
+                @Html.ActionLink("Detail", "Detail", new { id = member.Id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = member.Id })
+            </td>
+        </tr>
     }
 </table>
+@Html.ActionLink("返回至Dashboard主畫面", "Index", "Home")<br>

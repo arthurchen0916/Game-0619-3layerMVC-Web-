@@ -2,6 +2,10 @@
 
 @{
     ViewBag.Title = "Treasure Page";
+    if (Session["Account"] == null)
+    {
+        Response.Redirect("~/Login/Index");
+    }
 }
 
 <p>
@@ -10,21 +14,22 @@
 <table class="table">
     @foreach (var treasure in Model)
     {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelTreasure => treasure.Id)
-        </td>
-        <td>
-            @Html.DisplayFor(modelTreasure => treasure.MonsterID)
-        </td>
-        <td>
-            @Html.DisplayFor(modelTreasure => treasure.ItemID)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id = treasure.Id }) |
-            @Html.ActionLink("Detail", "Detail", new { id = treasure.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id = treasure.Id })
-        </td>
-    </tr>
+        <tr>
+            <td>
+                @Html.DisplayFor(modelTreasure => treasure.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelTreasure => treasure.MonsterID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelTreasure => treasure.ItemID)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = treasure.Id }) |
+                @Html.ActionLink("Detail", "Detail", new { id = treasure.Id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = treasure.Id })
+            </td>
+        </tr>
     }
 </table>
+@Html.ActionLink("返回至Dashboard主畫面", "Index", "Home")<br>
