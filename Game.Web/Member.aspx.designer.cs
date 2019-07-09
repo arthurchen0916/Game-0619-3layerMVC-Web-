@@ -10,7 +10,7 @@
 namespace Game.Web {
     
     
-    public partial class Monster {
+    public partial class Member {
         
         /// <summary>
         /// GridView1 控制項。

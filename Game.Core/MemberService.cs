@@ -8,12 +8,26 @@ namespace Game.Core
 {
     public class MemberService
     {
-        public readonly object Members;
         IRepository<Member> memberRepository;
 
         public MemberService()
         {
             memberRepository = new MemberRepository();
+        }
+
+        public bool Auth(Member member)
+        {
+            bool result = false;
+            var chk = memberRepository.Find(x => x.Account == member.Account && x.Password == member.Password).SingleOrDefault();
+            if (chk == null)
+            {
+               //to do something
+            }
+            else
+            {
+                result = true;
+            }
+            return result;
         }
 
         //Read

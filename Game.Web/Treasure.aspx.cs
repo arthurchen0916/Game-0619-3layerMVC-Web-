@@ -5,13 +5,13 @@ using System.Linq;
 
 namespace Game.Web
 {
-    public partial class Monster : System.Web.UI.Page
+    public partial class Treasure : System.Web.UI.Page
     {
-        MonsterService monsterService;
+        TreasureService treasureService;
         protected void Page_Load(object sender, EventArgs e)
         {
-            monsterService = new MonsterService();
-            List<Common.Entities.Monster> list = monsterService.GetAll().ToList();
+            treasureService = new TreasureService();
+            List<Common.Entities.Treasure> list = treasureService.GetAll().ToList();
             GridView1.DataSource = list;
             GridView1.DataBind();
         }

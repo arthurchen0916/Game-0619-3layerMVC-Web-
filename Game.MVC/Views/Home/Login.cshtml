@@ -1,4 +1,4 @@
-﻿@model  Game.Common.Entities.Member
+﻿@model Game.MVC.Models.Account
 @{
     Layout = null;
 }
@@ -10,21 +10,22 @@
     <meta name="viewport" content="width=device-width" />
     <title>Login</title>
     <style>
-        #login-div{
-            position:absolute;
-            left:40%;
-            top:40%;
+        #login-div {
+            position: absolute;
+            left: 40%;
+            top: 40%;
             border: 1px solid #ccc;
-            padding:10px 10px;
+            padding: 10px 10px;
         }
-        .field-validation-error{
-            color:red;
+
+        .field-validation-error {
+            color: red;
         }
     </style>
 </head>
 <body>
     <div id="login-div">
-        @using (Html.BeginForm("Autherize","Login", FormMethod.Post))
+        @using (Html.BeginForm("Autherize", "Home", FormMethod.Post))
         {
             <table>
                 <tr>
@@ -33,15 +34,15 @@
                 </tr>
                 <tr>
                     <td>
-                        @Html.LabelFor(model => model.Account)
+                        @Html.LabelFor(model => model.Name)
                     </td>
                     <td>
-                        @Html.EditorFor(model => model.Account)
+                        @Html.EditorFor(model => model.Name)
                     </td>
                 </tr>
                 <tr>
                     <td></td>
-                    <td>@Html.ValidationMessageFor(model => model.Account)</td>
+                    <td>@Html.ValidationMessageFor(model => model.Name)</td>
                 </tr>
 
                 <tr>
@@ -57,9 +58,9 @@
                     <td>@Html.ValidationMessageFor(model => model.Password)</td>
                 </tr>
                 <tr>
-                    <td colspan="2"> 
+                    <td colspan="2">
                         <label class="field-validation-error">@Html.DisplayFor(model => model.LoginErrorMessage)</label>
-                    </td> 
+                    </td>
                 </tr>
                 <tr>
                     <td></td>
