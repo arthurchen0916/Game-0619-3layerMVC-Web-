@@ -8,15 +8,14 @@ namespace Game.MVC.Controllers
     public class TreasureController : Controller
     {
         TreasureService treasureService;
-
         // GET: Treasure
         public ActionResult Index()
-        {
-            treasureService = new TreasureService();
+       {
+           treasureService = new TreasureService();
             var model = treasureService.GetAll().ToList();
             return View(model);
         }
-
+        
         //Add功能
         public ActionResult Create()
         {
@@ -111,5 +110,14 @@ namespace Game.MVC.Controllers
                 return View(model);
             }
         }
-    }
+
+        //合併
+        public ActionResult MonsterItem()
+        {
+            treasureService = new TreasureService();
+            var model = treasureService.QueryName();
+
+            return View(model);
+            }
+        }
 }

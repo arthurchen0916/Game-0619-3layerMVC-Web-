@@ -1,5 +1,6 @@
 ﻿using Game.Common.Entities;
 using Game.Core;
+using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
 
@@ -16,8 +17,7 @@ namespace Game.MVC.Controllers
             var model = itemService.GetAll().ToList();
             return View(model);
         }
-        
-        //Add功能
+
         public ActionResult Create()
         {
             return View();
@@ -28,26 +28,6 @@ namespace Game.MVC.Controllers
         {
             itemService = new ItemService();
             var chk = itemService.Add(model);
-
-            if(chk)
-            {
-                return RedirectToAction("Index");
-            }
-            else
-            {
-                return HttpNotFound();
-            }
-        }
-
-            //Delete功能
-             public ActionResult Delete(int?id)
-        {
-            if(id == null)
-            {
-                return HttpNotFound();
-            }
-            itemService = new ItemService();
-            var chk = itemService.Delete((int)id);
             if (chk)
             {
                 return RedirectToAction("Index");
@@ -58,17 +38,16 @@ namespace Game.MVC.Controllers
             }
         }
 
-
-        //Details功能
         public ActionResult Detail(int? id)
         {
-            if (id == null)
+            if (null == id)
             {
                 return HttpNotFound();
             }
+
             itemService = new ItemService();
             var chk = itemService.Query((int)id);
-            if (chk == null)
+            if (null == chk)
             {
                 return HttpNotFound();
             }
@@ -77,17 +56,17 @@ namespace Game.MVC.Controllers
                 return View(chk);
             }
         }
-        
-        //Edit功能
-        public ActionResult Edit (int? id)
+
+        public ActionResult Edit(int? id)
         {
-            if (id == null)
+            if (null == id)
             {
                 return HttpNotFound();
             }
+
             itemService = new ItemService();
             var chk = itemService.Query((int)id);
-            if (chk == null)
+            if (null == chk)
             {
                 return HttpNotFound();
             }
@@ -110,6 +89,65 @@ namespace Game.MVC.Controllers
             {
                 return View(model);
             }
+        }
+
+        public ActionResult Delete(int? id)
+        {
+            if (null == id)
+            {
+                return HttpNotFound();
+            }
+
+            itemService = new ItemService();
+            var chk = itemService.Remove((int)id);
+            if (chk)
+            {
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                return HttpNotFound();
+            }
+        }
+
+        public ActionResult Query()
+        {
+            itemService = new ItemService();
+            var items = itemService.GetAll().ToList();
+
+            ViewBag.Items = items.Select(x =>
+                                  new SelectListItem()
+                                  {
+                                      Text = x.Name,
+                                      Value = x.Id.ToString()
+                                  });
+            return View(new List<Item>());
+        }
+
+        [HttpPost]
+        public ActionResult Query(int weight)
+        {
+            itemService = new ItemService();
+            var items = itemService.GetAll().ToList();
+
+            ViewBag.Items = items.Select(x =>
+                                  new SelectListItem()
+                                  {
+                                      Text = x.Name,
+                                      Value = x.Id.ToString()
+                                  }); ;
+
+
+            var model = itemService.QueryByWeight(weight).ToList();
+            return View(model);
+        }
+
+        public ActionResult QueryByItem(int weight)
+        {
+
+            var model = itemService.QueryByWeight(weight).ToList();
+            return View(model);
+
         }
     }
 }

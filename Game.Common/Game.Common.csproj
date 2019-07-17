@@ -47,9 +47,11 @@
     <Compile Include="Entities\Member.cs" />
     <Compile Include="Entities\Monster.cs" />
     <Compile Include="Entities\Item.cs" />
+    <Compile Include="Entities\MonsterItem.cs" />
     <Compile Include="Entities\Treasure.cs" />
     <Compile Include="Interfaces\IDomainEventDispatcher.cs" />
     <Compile Include="Interfaces\IRepository.cs" />
+    <Compile Include="Interfaces\ITreasureRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />

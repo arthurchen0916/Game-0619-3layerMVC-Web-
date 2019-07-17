@@ -10,7 +10,7 @@ namespace Game.Dal.Base
 {
     public abstract class BaseRepository<T> : IRepository<T> where T : BaseEntity
     {
-        private GameContext _dbContext
+        internal GameContext _dbContext
         {
             get;
             set;
@@ -69,6 +69,11 @@ namespace Game.Dal.Base
         public IEnumerable<T> FindAll()
         {
             return _dbContext.Set<T>().AsQueryable();
+        }
+
+        public IEnumerable<T> SqlQuery(string sql, params object[] parameters)
+        {
+            return _dbContext.Database.SqlQuery<T>(sql, parameters);
         }
     }
 }

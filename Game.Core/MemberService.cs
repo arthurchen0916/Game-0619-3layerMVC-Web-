@@ -15,21 +15,6 @@ namespace Game.Core
             memberRepository = new MemberRepository();
         }
 
-        public bool Auth(Member member)
-        {
-            bool result = false;
-            var chk = memberRepository.Find(x => x.Account == member.Account && x.Password == member.Password).SingleOrDefault();
-            if (chk == null)
-            {
-               //to do something
-            }
-            else
-            {
-                result = true;
-            }
-            return result;
-        }
-
         //Read
         public IEnumerable<Member> GetAll()
         {
@@ -86,6 +71,21 @@ namespace Game.Core
             else
             {
                 memberRepository.Update(member);
+                result = true;
+            }
+            return result;
+        }
+
+        public bool Auth(Member member)
+        {
+            bool result = false;
+            var chk = memberRepository.Find(x => x.Account == member.Account && x.Password == member.Password).SingleOrDefault();
+            if (chk == null)
+            {
+                //to do something
+            }
+            else
+            {
                 result = true;
             }
             return result;

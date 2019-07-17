@@ -4,12 +4,13 @@
     ViewBag.Title = "Item Page";
     if (Session["Account"] == null)
     {
-        Response.Redirect("~/Login/Index");
+        Response.Redirect("~/Home/Login");
     }
 }
 
 <p>
-    @Html.ActionLink("Create New Item", "Create")
+    @Html.ActionLink("Create New Item", "Create") <br><br>
+    @Html.ActionLink("進入查詢物品條件頁面", "Query", "Item")<br>
 </p>
 <table class="table">
     @foreach (var item in Model)

@@ -8,9 +8,7 @@ namespace Game.Core
 {
     public class TreasureService
     {
-        public readonly object Treasures;
-        IRepository<Treasure> treasureRepository;
-
+        ITreasureRepository treasureRepository;
         public TreasureService()
         {
             treasureRepository = new TreasureRepository();
@@ -75,5 +73,17 @@ namespace Game.Core
             }
             return result;
         }
-    }
+
+
+        //Sql
+     
+
+        public List<MonsterItem> QueryName()
+        {
+            var item = treasureRepository.QueryNameBySql("SELECT t.ID ,m.name, i.name From Treasure t, Monster m, Item i WHERE m.ID = t.MonsterID and i.ID = t.ItemID; ");
+
+            return item.ToList();
+
+        }
+     }
 }

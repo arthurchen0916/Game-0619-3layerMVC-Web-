@@ -1,0 +1,20 @@
+﻿@model IEnumerable<Game.Common.Entities.MonsterItem>
+
+@{
+    ViewBag.Title = "MonsterItem Page";
+}
+
+
+<table class="table">
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.MonsterName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ItemName)
+            </td>
+        </tr>
+    }
+</table>

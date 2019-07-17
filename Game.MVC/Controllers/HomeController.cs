@@ -47,7 +47,7 @@ namespace WebApplication1.Controllers
             }
             else
             {
-                if (ms.Auth(new Member { Account = user.Name, Password = user.Password }))
+                if (ms.Auth(new Member { Account = user.Name , Password = user.Password}))
                 {
                     Session["Account"] = user.Name;
                     return RedirectToAction("Index", "Home");
@@ -58,14 +58,6 @@ namespace WebApplication1.Controllers
                     return View("Login", user);
                 }
             }
-
         }
-
-        public ActionResult LogOut()
-        {
-            Session.Abandon();
-            return RedirectToAction("Login", "Home");
-        }
-
     }
 }

@@ -14,7 +14,6 @@ namespace Game.Core
         {
             itemRepository = new ItemRepository();
         }
-
         //Read
         public IEnumerable<Item> GetAll()
         {
@@ -22,63 +21,69 @@ namespace Game.Core
             return result;
         }
 
-        //Add 
         public bool Add(Item item)
         {
             bool result = false;
             var chk = itemRepository.GetById(item.Id);
-            if (chk == null)
+            if (null == chk)
             {
                 itemRepository.Add(item);
                 result = true;
             }
             else
             {
-                // to do something
+                // todo something
             }
-                return result;
+
+            return result;
         }
 
-        //Delete
-        public bool Delete(int id)
+        public bool Update(Item item)
+        {
+            bool result = false;
+            var chk = itemRepository.GetById(item.Id);
+            if (null == chk)
+            {
+                // todo something
+            }
+            else
+            {
+                itemRepository.Update(item);
+                result = true;
+            }
+
+            return result;
+        }
+
+        public bool Remove(int id)
         {
             bool result = false;
             var chk = itemRepository.GetById(id);
-
-            if (chk == null)
+            if (null == chk)
             {
-                //to do something
+                // todo something
             }
             else
             {
                 itemRepository.Remove(chk);
                 result = true;
             }
+
             return result;
-         }
-        //Detail
+        }
+
         public Item Query(int id)
         {
             var item = itemRepository.Find(x => x.Id == id).SingleOrDefault();
+
             return item;
         }
 
-        //Update
-        public bool Update(Item item)
+        public List<Item> QueryByWeight(int weight)
         {
-            bool result = false;
-            var chk = itemRepository.GetById(item.Id);
-            if (chk == null)
-            {
-                //to do something
-            }
-            else
-            {
-                itemRepository.Update(item);
-                result  = true;
-            }
-            return result;
-        }
+            var item = itemRepository.Find(x => x.Weight > weight).ToList();
 
+            return item;
+        }
     }
 }

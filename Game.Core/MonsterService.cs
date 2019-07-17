@@ -8,7 +8,6 @@ namespace Game.Core
 {
     public class MonsterService
     {
-        public readonly object Monsters;
         IRepository<Monster> monsterRepository;
 
         public MonsterService()
